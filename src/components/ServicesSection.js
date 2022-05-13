@@ -1,4 +1,4 @@
-// Import Icons
+// Icons
 import clock from "../img/clock.svg";
 import diaphragm from "../img/diaphragm.svg";
 import money from "../img/money.svg";
