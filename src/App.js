@@ -1,22 +1,39 @@
-import GlobalStyle from "./components/GlobalStyle";
-import Nav from "./components/Nav";
-import AboutPage from "./pages/AboutPage";
-import ContactPage from "./pages/ContactPage";
-import WorkPage from "./pages/WorkPage";
+import React from 'react';
+//Global Style
+import GlobalStyle from './components/GlobalStyle';
+//Import Pages
+import AboutUs from './pages/AboutUs';
+import OurWork from './pages/OurWork';
+import ContactUs from './pages/ContactUs';
+import MovieDetail from './pages/MovieDetail';
+import Nav from './components/Nav';
+//Router
+import { Route, Switch, useLocation } from 'react-router-dom';
+//Animation
+import { AnimatePresence } from 'framer-motion';
 
-import { Routes, Route } from "react-router-dom";
 function App() {
+  const location = useLocation();
   return (
     <div className="App">
       <GlobalStyle />
       <Nav />
-      <Routes>
-        {/* Cuando encuentra la ruta se queda
-      y no sigue buscando más */}
-        <Route path="/" element={<AboutPage />} />
-        <Route path="/work" element={<WorkPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-      </Routes>
+      <AnimatePresence exitBeforeEnter>
+        <Switch location={location} key={location.pathname}>
+          <Route path="/" exact>
+            <AboutUs />
+          </Route>
+          <Route path="/work" exact>
+            <OurWork />
+          </Route>
+          <Route path="/contact">
+            <ContactUs />
+          </Route>
+          <Route path="/work/:id">
+            <MovieDetail />
+          </Route>
+        </Switch>
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,38 +1,45 @@
-import home1 from "../img/home1.png";
-
-/* import styled from "styled-components";
- */ import { About, Description, Image, Hide } from "./../styles";
+import React from 'react';
+import { About, Description, Image } from '../styles';
+import styled from 'styled-components';
+//Images
+import homeImg1 from '../img/home1.png';
+import { titleAnim, fade, photoAnim } from '../animation';
+import { motion } from 'framer-motion';
+import Wave from './Wave';
 
 const AboutSection = () => {
   return (
-    /* Ojo a la diferencia entre un styled component y
-    un componente normal */
     <About>
       <Description>
         <div className="title">
           <Hide>
-            <h2>We work to make</h2>
+            <motion.h2 variants={titleAnim}>We work to make</motion.h2>
           </Hide>
           <Hide>
-            <h2>
-              Your <span>dreams</span> come
-            </h2>
+            <motion.h2 variants={titleAnim}>
+              your <span>dreams</span> come
+            </motion.h2>
           </Hide>
           <Hide>
-            <h2>true.</h2>
+            <motion.h2 variants={titleAnim}>true.</motion.h2>
           </Hide>
         </div>
-        <p>
-          Contact us for any photography or ideas that you have. We have
-          professionals with amazing skills.
-        </p>
-        <button>Contact Us</button>
+        <motion.p variants={fade}>
+          Contact us for any photography or videography ideas that you have. We
+          have professionals with amazing skills to help you achieve it.
+        </motion.p>
+        <motion.button variants={fade}>Contact Us</motion.button>
       </Description>
       <Image>
-        <img src={home1} alt="Guy with a camera" />
+        <motion.img variants={photoAnim} src={homeImg1} alt="camera guy" />
       </Image>
+      <Wave />
     </About>
   );
 };
+
+const Hide = styled.div`
+  overflow: hidden;
+`;
 
 export default AboutSection;
